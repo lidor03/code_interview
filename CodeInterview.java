@@ -21,9 +21,24 @@ public class CodeInterview {
 		}
 	}
 	
+	//Q 4
+	
+	public static boolean palindromePermutation(String str){
+		int numOfOdd = 0; int num;
+		int numOfApp[] = new int[256];
+		for (int i=0;i<str.length();i++){
+			if (str.charAt(i) == ' ') continue;
+			num = ++numOfApp[(int)(Character.toLowerCase(str.charAt(i)))];
+			if(num % 2 == 1) numOfOdd++;
+			else numOfOdd--;
+		}
+		return numOfOdd <= 1;
+	}
+	
 	public static void main(String[] args){
 		char[] arr = "Mr John Smith    ".toCharArray();
 		uRLify(arr , 13);
-		System.out.println(Arrays.toString(arr));
+		System.out.println(new String(arr));
+		System.out.println(palindromePermutation("Tact Coal"));
 	}
 }
