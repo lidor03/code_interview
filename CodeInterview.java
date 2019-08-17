@@ -55,11 +55,43 @@ public class CodeInterview {
 		return str1.equals(str2);
 	}
 	
+	//Q6
+	
+	public static String strComp(String str){
+		if (str.length() == 0) return str;
+		int j = 0;
+		int counter = 0;
+		char nowLetter = str.charAt(0);
+		String newStr[] = new String[str.length()];
+		char chArr[] = str.toCharArray();
+		for (char c : chArr){
+			if(c == nowLetter){
+				counter++;
+			}
+			else{
+				if(j+1 >= str.length()){
+					return str;
+				}
+				newStr[j] = ""+nowLetter;
+				newStr[j+1] = ""+counter;
+				j=j+2;
+				counter = 1;
+				nowLetter = c;
+			}
+		}
+		newStr[j] = ""+nowLetter;
+		newStr[j+1] = ""+counter;
+		String output = Arrays.toString(newStr).replace(", ", "").replace("[", "").replace("]","").replace("null", "");
+		return output.length()>str.length()? str:output;
+	}
+	
 	public static void main(String[] args){
 		char[] arr = "Mr John Smith    ".toCharArray();
 		uRLify(arr , 13);
 		System.out.println(new String(arr));
 		System.out.println(palindromePermutation("Tact Coal"));
 		System.out.println(oneAway("pale", "bale"));
+		System.out.println(strComp("aabcccccaaa"));
+		System.out.println(strComp("abca"));
 	}
 }
